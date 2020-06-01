@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改文章</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="/bootstrap4/css/bootstrap.css">
+    <link rel="stylesheet" href="/editor.md/css/editormd.css">
+</head>
+<body>
+<%- include('../nav.html'); %>
+<div class="container mt-4">
+    <div class="col-12">
+        <div class="card p-4">
+            <h1 class="h3">修改文章页面</h1>
+            <form action="/article/update" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<%=data.article.id%>">
+                <div class="form-group">
+                    <label for="title">标题：</label>
+                    <input name="title" type="text" required class="form-control" id="title" placeholder="请输入标题" >
+                </div>
+                <div class="form-group">
+                    <label from="category">所属分类:</label>
+                    <select name="category_id" class="form-control" id="category">
+                        <%data.category.forEach(function(category){%>
+                        <option value="<%=category.id%>"><%if(data.article.category_id==category.id){%> <%}%><%=category.name%></option>
+                        <%})%>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pic">缩略图：</label>
+                    <input name="pic" type="file" class="form-control" id="pic">
+                </div>
+                <div class="form-group" id="content">
+                    <label>文章内容</label>
+                    <textarea name="content" class="form-control" rows="3"><%=data.article.content%></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="form-control btn btn-success">
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+</div>
+
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+<script src="/editor.md/src/editormd.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var editor = editormd("content", {
+            width: "100%",
+            height: "600",
+            imageUpload  : true,
+            saveHTMLToTextarea   : true,//自动创建一个存放html代码的textarea
+            imageFormats  : ["jpg", "jpeg", "gif", "png", "bmp", "webp",'mp4'],
+            imageUploadURL : "/article/upload/",
+            htmlDecode : true ,// 开启HTML代码解析模式
+            htmlDecode : "style,script,iframe,sub,sup|on*", //
+            path : "/editor.md/lib/"
+        });
+    });
+</script>

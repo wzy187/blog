@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="/bootstrap4/css/bootstrap.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+</head>
+<body>
+<div class="d-flex justify-content-center gddw" >
+<form class="bg-white col-4 pb-3 dlbd" action="/users/login" method="post">
+    <h3 style="text-align: center;">用户登录</h3>
+    <div class="form-group">
+
+        <label class=" col-form-label">账号</label>
+        <input required type="" class="form-control" pattern="^.{3,12}$" name="username" placeholder="请输入用户名">
+    </div>
+    <div class="form-group">
+        <label>密码</label>
+        <input required type="password" pattern="^.{3,12}$" class="form-control" name="userpwd" placeholder="请输入密码">
+    </div>
+    <button type="submit" class="btn btn-primary col-12 mt-3 mb-2">登录</button>
+</form>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+</html>

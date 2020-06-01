@@ -1,0 +1,9 @@
+body{
+    background-image: url(../images/userbg.jpg);
+    background-size:100%;
+}
+
+.dlbd{
+    width: 200px;
+    border-radius: 2%;
+}

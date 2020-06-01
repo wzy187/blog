@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分类</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="/bootstrap4/css/bootstrap.css">
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        .xiugai{
+            border: #000000 !important;
+            color: #0a001f !important;
+            background-color: #88bdc1 !important;
+        }
+        .xiugai:hover{
+            background-color: #61fbfb !important;
+        }
+        .shanchu{
+            border: #000000 !important;
+            color: #0a001f !important;
+            background-color: #c19aa0 !important;
+        }
+        .shanchu:hover{
+            background-color: #ff696e !important;
+        }
+    </style>
+</head>
+<body>
+<%- include('../nav.html'); %>
+<div class="row justify-content-center m-0">
+    <div class="list-group col-md-2 mt-5 mr-3">
+        <li class="list-group-item active" style="border:none;background-color:#642f3e">分类</li>
+        <%data.category.forEach(function(b){%>
+        <a href="/article/category/<%=b.id%>" class="bg-dark list-group-item list-group-item-action"><%=b.name%></a>
+        <%})%>
+    </div>
+
+    <div class="card col-md-7 mt-5 p-0 bg-dark"style="border:1px #480000 solid">
+        <table class="table table-striped  bg-dark" >
+            <tr style="background-color:#642f3e;">
+                <th>标题</th>
+                <th>创建时间</th>
+                <th>缩略图</th>
+                <th>内容</th>
+                <th>操作</th>
+            </tr>
+            <%data.articles.forEach(function(a){%>
+            <tr>
+                <td>
+                    <div style="width:100px;height:100px;overflow: hidden;font-size:20px;">
+                        <a style="color:#af2d57;" href="/article/show/<%=a.id%>"><%=a.title%></a>
+                    </div>
+                </td>
+                <td>
+                    <div style="width:100px;height:100px;overflow: hidden;"><%=a.create_time%></div>
+                </td>
+                <td>
+                    <div style="width:100px;height:100px;overflow: hidden;">
+                        <img src="/uploads/<%=a.pic%>" alt="" style="width: 100%;">
+                    </div>
+                </td>
+                <td id="content">
+                    <div style="width:100px;height:100px;overflow: hidden;">
+                        <text id="contents" cols="30" rows="10"><%=a.content%></text>
+                    </div>
+                </td>
+                <td>
+                    <div style="width:100px;height:100px;overflow: hidden;">
+                    <a href="/article/edit/<%=a.id%>" class="btn btn-primary xiugai">修改</a>
+                    <a href="/article/drop/<%=a.id%>" class="btn btn-danger shanchu"
+                       onclick="return confirm('你确定要删除吗？')">删除</a>
+                    </div>
+                </td>
+            </tr>
+            <%})%>
+            <tr>
+                <td colspan="5">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link bg-dark"
+                                                     href="/article/category/<%=data.category_id%>?page=<%=data.page-1%>">上一页</a>
+                            </li>
+                            <li class="page-item"><a class="page-link bg-dark"
+                                                     href="/article/category/<%=data.category_id%>?page=1">第一页</a></li>
+
+                            <li class="page-item"><a class="page-link bg-dark"
+                                                     href="/article/category/<%=data.category_id%>?page=<%=data.page%>"><%=data.page%></a>
+                            </li>
+                            <li class="page-item"><a class="page-link bg-dark"
+                                                     href="/article/category/<%=data.category_id%>?page=<%=data.page+1%>"><%=data.page+1%></a>
+                            </li>
+                            <li class="page-item"><a class="page-link bg-dark"
+                                                     href="/article/category/<%=data.category_id%>?page=<%=data.page+2%>"><%=data.page+2%></a>
+                            </li>
+
+                            <li class="page-item"><a class="page-link bg-dark"
+                                                     href="/article/category/<%=data.category_id%>?page=<%=data.pageCount%>">尾页</a>
+                            </li>
+                            <li class="page-item"><a class="page-link bg-dark"
+                                                     href="/article/category/<%=data.category_id%>?page=<%=data.page+1%>">下一页</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </td>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>

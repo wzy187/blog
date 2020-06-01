@@ -1,0 +1,16 @@
+body{
+    background-image: url(../images/bjt.jpg);
+    background-size: 100%;
+}
+.sousuo{
+    color: rgba(113, 210, 210, 0.71) !important;
+}
+.bg-dark{
+    color: #ffffff  !important;
+}
+.bg-dark:hover{
+    color: #f4f4f4 !important;
+}
+th{
+    border:0px !important;
+}

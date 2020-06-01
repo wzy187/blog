@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/bootstrap4/css/bootstrap.css">
+    <link rel="stylesheet" href="/editor.md/css/editormd.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<%- include('../nav.html'); %>
+<div class="container mt-4">
+    <div class="row d-flex justify-content-center">
+        <div class="col-10">
+            <div class="card" style="background-color:#ecefe7;">
+                <h1 style="margin-top:30px;text-align: center;"><%=data.article.title%></h1>
+                    <div style="overflow: hidden;margin: 0 auto;width: 100px;">
+                        <img src="/uploads/<%=data.article.pic%>" alt="" style="width: 100%;">
+                    </div>
+                <h3 style="text-align: left">文章ID：<%=data.article.id%></h3>
+                <h3 style="text-align: right">浏览次数:<%=data.article.views%></h3>
+                <p style="text-align: right">发布时间:<%=data.article.create_time%></p>
+                <p style="text-align: right">最近更新时间:<%=data.article.update_at%></p>
+                <div style="padding:0 20px 0 20px;" id="content">
+                    <text style="text-indent:2em;" id="contents" cols="30" rows="10"><%=data.article.content%></text>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="/bootstrap4/js/bootstrap.js"></script>
+<script src="/javascripts/marked.min.js"></script>
+<script src="/editor.md/src/editormd.js"></script>
+<script type="text/javascript">
+    $(function() {
+
+        $("#content").html(
+            marked($(
+                "#contents").text(
+
+            ))
+        );
+    });
+</script>
